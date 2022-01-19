@@ -1,5 +1,7 @@
 ## Log de Progresso do bootcamp
 
+- 19.01: Conclusão da atividade: IDE Instalação e Configuração
+- 19.01: Conclusão da atividade: Criando o Ambiente de Desenvolvimento
 - 19.01: First commit após criar chave SSH
 - 19.01: conclusão da atividade: Introdução ao Git e ao Github
 - 18.01: Desafio: Criando seu Primeiro Repositório no GitHub Para Compartilhar Seu Progresso
