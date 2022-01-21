@@ -1,5 +1,9 @@
 ## Log de Progresso do bootcamp
 
+- 20.01: Desafios Iniciais - GFT Start #3 .Net 
+- 20.01: Conclusão da atividade: Controlando o Fluxo de Execução
+- 20.01: Conclusão da atividade: Trabalhando com Tipos de Referência e Valor em C#
+- 20.01: Conclusão da atividade: Primeiros passos com .NET
 - 19.01: Conclusão da atividade: IDE Instalação e Configuração
 - 19.01: Conclusão da atividade: Criando o Ambiente de Desenvolvimento
 - 19.01: First commit após criar chave SSH
