@@ -1,5 +1,6 @@
 ## Log de Progresso do bootcamp
 
+- 21,01: Entrega do projeto: Abstraindo um Jogo de RPG Usando Orientação a Objetos com C#
 - 20.01: Desafios Iniciais - GFT Start #3 .Net 
 - 20.01: Conclusão da atividade: Controlando o Fluxo de Execução
 - 20.01: Conclusão da atividade: Trabalhando com Tipos de Referência e Valor em C#
