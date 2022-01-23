@@ -1,6 +1,10 @@
 ## Log de Progresso do bootcamp
 
-- 21,01: Entrega do projeto: Abstraindo um Jogo de RPG Usando Orientação a Objetos com C#
+- 23.01: Conclusão da atividade: Programando com Orientação a Objeto com C#
+- 21.01: Conclusão da atividade: Construtores, Propriedades, Delegates e Eventos em .NET
+- 21.01: Conclusão da atividade: Trabalhando com Arquivos e Streams em C#
+- 21.01: Conclusão da atividade: Introdução ao HTTP/HTTPS
+- 21.01: Entrega do projeto: Abstraindo um Jogo de RPG Usando Orientação a Objetos com C#
 - 20.01: Desafios Iniciais - GFT Start #3 .Net 
 - 20.01: Conclusão da atividade: Controlando o Fluxo de Execução
 - 20.01: Conclusão da atividade: Trabalhando com Tipos de Referência e Valor em C#
