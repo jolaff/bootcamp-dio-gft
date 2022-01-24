@@ -1,5 +1,7 @@
 ## Log de Progresso do bootcamp
 
+- 23.01: Conclusão da atividade: Tratamento de Erro em C# com Exceptions
+- 24.01: Conclusão da atividade: Fundamentos de Coleções e LINQ com .NET
 - 23.01: Conclusão da atividade: Programando com Orientação a Objeto com C#
 - 21.01: Conclusão da atividade: Construtores, Propriedades, Delegates e Eventos em .NET
 - 21.01: Conclusão da atividade: Trabalhando com Arquivos e Streams em C#
