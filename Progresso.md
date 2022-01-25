@@ -1,5 +1,6 @@
 ## Log de Progresso do bootcamp
 
+- 25.01: Conclusão da atividade: Configuração da arquitetura back-end com .NET Core
 - 24.01: Conclusão da atividade: Desenvolvimento de aplicações com .NET
 - 24.01: Entrega de projeto prático: Tratamento de Erro em C# com Exceptions
 - 24.01: Conclusão da atividade: Tratamento de Erro em C# com Exceptions
