@@ -1,16 +1,57 @@
-﻿
-using gameflix.Models;
+﻿using gameflix.Models;
 using gameflix.Enum;
 
-Console.SetWindowSize(150, 50);
+GetUserInput();
 
-var newGame = new Game(1,
-"The 4th Coming",
-"MMORPG set in a medieval fantasy where you build your character as you progress and defeat monsters. Beware on goblin bridge! Do you feel worthy, punk?",
-"Vircom",
-1994,
-ERating.Everyone);
-newGame.AddGenre(EGenre.MassivelyMultiplayer, EGenre.RPG);
+void GetUserInput()
+{
+    string userInput = Menu();
+    while (userInput.ToUpper() != "X")
+    {
+        switch (userInput)
+        {
+            case "1":
 
-Console.WriteLine(newGame);
-Console.ReadKey();
+                break;
+            case "2":
+
+                break;
+            case "3":
+
+                break;
+            case "4":
+
+                break;
+            case "5":
+
+                break;
+            default:
+                Menu();
+                break;
+        }
+
+        userInput = Menu();
+    }
+}
+
+string Menu()
+{
+    Console.Clear();
+    Console.WriteLine();
+    Console.WriteLine("Gameflix - Gamefy your flix!");
+    Console.WriteLine();
+    Console.WriteLine("How can I help you?");
+    Console.WriteLine();
+    Console.WriteLine("1 - List your games");
+    Console.WriteLine("2 - View game details");
+    Console.WriteLine("3 - Add new game");
+    Console.WriteLine("4 - Update game info");
+    Console.WriteLine("5 - Remove game");
+    Console.WriteLine("X - Exit");
+    Console.WriteLine();
+    Console.Write("Please choose an option: ");
+
+    string userInput = Console.ReadLine().ToUpper();
+
+    return userInput;
+}
