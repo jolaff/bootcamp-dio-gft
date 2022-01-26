@@ -1,2 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
+Console.SetWindowSize(150, 50);
+
 Console.WriteLine("Hello, World!");
+Console.ReadKey();
