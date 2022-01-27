@@ -1,11 +1,17 @@
 ﻿using gameflix.Models;
 using gameflix.Enum;
+Console.SetWindowSize(180, 60);
+
+GamesList();
+
 
 GetUserInput();
 
 void GetUserInput()
 {
-    string userInput = Menu();
+    Menu();
+
+    string userInput = Console.ReadLine();
     while (userInput.ToUpper() != "X")
     {
         switch (userInput)
@@ -29,29 +35,27 @@ void GetUserInput()
                 Menu();
                 break;
         }
-
-        userInput = Menu();
+        userInput = Console.ReadLine();
     }
 }
 
-string Menu()
+void GamesList()
 {
     Console.Clear();
     Console.WriteLine();
-    Console.WriteLine("Gameflix - Gamefy your flix!");
-    Console.WriteLine();
-    Console.WriteLine("How can I help you?");
-    Console.WriteLine();
-    Console.WriteLine("1 - List your games");
-    Console.WriteLine("2 - View game details");
-    Console.WriteLine("3 - Add new game");
-    Console.WriteLine("4 - Update game info");
-    Console.WriteLine("5 - Remove game");
-    Console.WriteLine("X - Exit");
-    Console.WriteLine();
-    Console.Write("Please choose an option: ");
+    Console.WriteLine(@" Gameflix - Gamefy your flix!
 
-    string userInput = Console.ReadLine().ToUpper();
+ Here is your favorite games list!
+------------------------------");
+}
 
-    return userInput;
+void Menu()
+{
+    Console.SetCursorPosition(0, 53);
+    Console.WriteLine(@"------------------------------
+ How can i help you?
+
+ 1 - View Details | 2 - Add New | 3 - Update Info | 4 - Remove | 5 - List Removed | 6 - Undo Remove | X - Exit");
+    Console.WriteLine();
+    Console.Write(" Please choose an option: ");
 }

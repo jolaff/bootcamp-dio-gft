@@ -45,11 +45,18 @@ public class Game : EntityBase
     {
         return $@"Title: {Title}
 Genre: {Genres.Count}
-Description: {Description}
+Description: {BreakLine(Description)}
 Developer: {Developer}
 Release year: {Year}
 Rating: {Rating}";
     }
 
     public void Remove() => Removed = true;
+
+    private string BreakLine(string textToBreak)
+    {
+        const int COLUMNS = 12;
+        var breakedText = textToBreak.Select((text, size) => ((size + 1) % COLUMNS == 0) ? text + Environment.NewLine : text.ToString());
+        return string.Join("", breakedText);
+    }
 }
