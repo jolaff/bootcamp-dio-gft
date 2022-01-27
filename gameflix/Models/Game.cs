@@ -41,22 +41,54 @@ public class Game : EntityBase
         }
     }
 
-    public override string ToString()
-    {
-        return $@"Title: {Title}
-Genre: {Genres.Count}
-Description: {BreakLine(Description)}
-Developer: {Developer}
-Release year: {Year}
-Rating: {Rating}";
-    }
-
     public void Remove() => Removed = true;
 
-    private string BreakLine(string textToBreak)
+    public string Details()
     {
-        const int COLUMNS = 12;
-        var breakedText = textToBreak.Select((text, size) => ((size + 1) % COLUMNS == 0) ? text + Environment.NewLine : text.ToString());
+        return $@"+--------------------------------------------------------------------------------------------------------------------+
+     |{"",15} {"",-100}|        
+     |{"Title:",15} {Title,-100}|
+     |{"",15} {"",-100}|
+     |{"Genre:",15} {inlineGenres(),-100}|
+     |{"",15} {"",-100}|
+     |{"Description:",15} {BreakLine(Description, 100)}|
+     |{"",15} {"",-100}|
+     |{"Developer:",15} {Developer,-100}|
+     |{"",15} {"",-100}|
+     |{"Release year:",15} {Year,-100}|
+     |{"",15} {"",-100}|
+     |{"Rating:",15} {Rating,-100}|
+     |{"",15} {"",-100}|     
+     +--------------------------------------------------------------------------------------------------------------------+";
+    }
+
+    public override string ToString()
+    {
+        return $@" | Id: {Id,-2} > Title: {Title,-30} > Genres: {inlineGenres(),-60} |";
+    }
+
+    private string inlineGenres() => String.Join(", ", Genres);
+
+    private string BreakLine(string textToBreak, int columns)
+    {
+        var breakedText = textToBreak.Select((text, size) =>
+        {
+            if ((size + 1) % columns == 0)
+            {
+                columns += 116;
+                return $"{text}|{Environment.NewLine}     |";
+            }
+            else
+            {
+                if (size == (textToBreak.Length - 1))
+                {
+                    int remainingSpace = (columns - textToBreak.Length) + 1;
+                    return "".PadRight(remainingSpace, ' ');
+                }
+                return text.ToString();
+            }
+        });
+
         return string.Join("", breakedText);
     }
 }
