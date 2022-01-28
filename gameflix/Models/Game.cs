@@ -6,19 +6,22 @@ public class Game : EntityBase
 {
     public Game(int id,
                 string title,
-                string description,
+                List<EGenre> genres,
+    string description,
                 string developer,
                 int year,
-                ERating rating
+                ERating rating,
+                string alias
                 )
     {
         this.Id = id;
         this.Title = title;
-        this.Genres = new List<EGenre>();
+        this.Genres = genres;
         this.Description = description;
         this.Developer = developer;
         this.Year = year;
         this.Rating = rating;
+        this.Alias = alias;
         this.Removed = false;
     }
 
@@ -29,9 +32,12 @@ public class Game : EntityBase
     private int Year { get; set; }
     private ERating Rating { get; set; }
     private bool Removed { get; set; }
+    private string Alias { get; set; }
 
     public int GetId() => Id;
     public string GetTitle() => Title;
+
+    public string GetAlias() => Alias;
 
     public void AddGenre(params EGenre[] genres)
     {
@@ -47,7 +53,7 @@ public class Game : EntityBase
     {
         return $@"+--------------------------------------------------------------------------------------------------------------------+
      |{"",15} {"",-100}|        
-     |{"Title:",15} {Title,-100}|
+     |{Alias,15} {Title,-100}|
      |{"",15} {"",-100}|
      |{"Genre:",15} {inlineGenres(),-100}|
      |{"",15} {"",-100}|
@@ -64,7 +70,7 @@ public class Game : EntityBase
 
     public override string ToString()
     {
-        return $@" | Id: {Id,-2} > Title: {Title,-30} > Genres: {inlineGenres(),-60} |";
+        return $@" | Id: {Id,-2} > Alias: {Alias,-10} > Title: {Title,-30} > Genres: {inlineGenres(),-60} |";
     }
 
     private string inlineGenres() => String.Join(", ", Genres);

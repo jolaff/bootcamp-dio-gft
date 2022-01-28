@@ -13,17 +13,11 @@ public class GameRepository : IRepository<Game>
 
     public Game GetById(int id) => _games[id];
 
-    public void Insert(Game item)
-    {
-        throw new NotImplementedException();
-    }
+    public void Insert(Game item) => _games.Add(item);
 
     public List<Game> Items() => _games;
 
-    public int NextId()
-    {
-        throw new NotImplementedException();
-    }
+    public int NextId() => _games.Count;
 
     public void Remove(int id)
     {
