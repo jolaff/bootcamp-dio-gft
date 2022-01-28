@@ -42,12 +42,11 @@ public class Game : EntityBase
     public void AddGenre(params EGenre[] genres)
     {
         foreach (EGenre genre in genres)
-        {
             Genres.Add(genre);
-        }
     }
 
-    public void Remove() => Removed = true;
+    public void Exclude() => Removed = true;
+    public void UndoExclude() => Removed = false;
 
     public string Details()
     {
@@ -68,10 +67,7 @@ public class Game : EntityBase
      +--------------------------------------------------------------------------------------------------------------------+";
     }
 
-    public override string ToString()
-    {
-        return $@" | Id: {Id,-2} > Alias: {Alias,-10} > Title: {Title,-30} > Genres: {inlineGenres(),-60} |";
-    }
+    public override string ToString() => $@" | Id: {Id,-2} > Alias: {Alias,-10} > Title: {Title,-30} > Genres: {inlineGenres(),-60} |";
 
     private string inlineGenres() => String.Join(", ", Genres);
 
@@ -97,4 +93,6 @@ public class Game : EntityBase
 
         return string.Join("", breakedText);
     }
+
+    public bool IsRemoved() => Removed;
 }

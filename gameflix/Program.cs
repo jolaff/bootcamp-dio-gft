@@ -5,21 +5,6 @@ using System.Text.RegularExpressions;
 Console.SetWindowSize(180, 60);
 var _repository = new GameRepository();
 
-#region PLACEHOLDER GAMES FOR TESTING PURPOSE - TO BE DELETED
-var gamesList = _repository.Items();
-
-//var t4c = new Game(1, "The 4th Coming", "Some random description. In web pages developers usually use Lorem Ipsum bla bla bla. But I decided not to. Do you feel worthy punk?", "Vircom", 1995, ERating.AdultsOnly);
-//var wow = new Game(2, "World of Warcraft", "Most played MMORPG EVER! I used to play a Healer Shaman! I am a man who walks alone totalmente para voce ir achar qualquer coisa e to sem palavras", "Blizzard", 2010, ERating.Everyone);
-//var mu = new Game(3, "MU Online", "Chinese game, did play some but quit quit.", "Random Chinese", 2008, ERating.Teen);
-//var uo = new Game(4, "Ultima Online", "Best sandbox MMORPF ever!", "Forgot", 1990, ERating.RatingPending);
-
-//gamesList.Add(t4c);
-//gamesList.Add(wow);
-//gamesList.Add(mu);
-//gamesList.Add(uo);
-#endregion
-
-//GamesList();
 GetUserInput();
 
 void GetUserInput()
@@ -41,10 +26,10 @@ void GetUserInput()
                 BuildEditMenu();
                 break;
             case "4":
-
+                BuildDeleteMenu();
                 break;
             case "5":
-
+                BuildUndeleteMenu();
                 break;
             default:
                 BuildMainMenu();
@@ -82,6 +67,21 @@ void BuildEditMenu()
     EditGame();
 }
 
+void BuildDeleteMenu()
+{
+    HeadMenu();
+    ActionMenu();
+    RemoveGame();
+}
+
+void BuildUndeleteMenu()
+{
+    HeadMenu();
+    RemovedList();
+    ActionMenu();
+    UndoRemoveGame();
+}
+
 void HeadMenu()
 {
     Console.Clear();
@@ -95,11 +95,28 @@ void HeadMenu()
 
 void GamesList()
 {
-    if (gamesList.Count > 0)
+    if (_repository.Items().Count > 0)
     {
-        foreach (var game in gamesList)
+        foreach (var game in _repository.Items())
         {
-            Console.WriteLine(game);
+            if (!game.IsRemoved())
+                Console.WriteLine(game);
+        }
+    }
+    else
+    {
+        Console.WriteLine(" There is no game registered in the list.");
+    }
+}
+
+void RemovedList()
+{
+    if (_repository.Items().Count > 0)
+    {
+        foreach (var game in _repository.Items())
+        {
+            if (game.IsRemoved())
+                Console.WriteLine(game);
         }
     }
     else
@@ -114,7 +131,7 @@ void ActionMenu()
     Console.WriteLine(@"------------------------------
  How can i help you?
 
- 1 - View Details | 2 - Add New | 3 - Update Info | 4 - Remove | 5 - List Removed | 6 - Undo Remove | B - Back to Main Menu | X - Exit");
+ 1 - View Details | 2 - Add New | 3 - Update Info | 4 - Remove | 5 - Undo Remove | B - Back to Main Menu | X - Exit");
     Console.WriteLine();
     Console.Write(" Please choose an option: ");
 }
@@ -139,47 +156,7 @@ void AddGame()
     Console.WriteLine("Add new game to the list");
     Console.WriteLine();
 
-    // foreach (int genre in Enum.GetValues(typeof(EGenre)))
-    //     Console.WriteLine($"{"",8}{genre,2} - {Enum.GetName(typeof(EGenre), genre)}");
-
-    // Console.WriteLine();
-    // Console.Write("     Choose the genre, separeted by comma (ex: 1,2,3): ");
-    // string inputGenreToConvert = Console.ReadLine();
-
-    // Console.Write("     What is the game title? ");
-    // string inputTitle = Console.ReadLine();
-
-    // Console.Write("     Please input the description: ");
-    // string inputDescription = Console.ReadLine();
-
-    // Console.Write("     Type in the name of the developer: ");
-    // string inputDeveloper = Console.ReadLine();
-
-    // Console.Write("     Year the game has been released: ");
-    // int inputYear = int.Parse(Console.ReadLine());
-
-    // Console.Write("     Pick a rating ( ");
-    // foreach (int rating in Enum.GetValues(typeof(ERating)))
-    //     Console.Write($"{rating,2} - {Enum.GetName(typeof(ERating), rating) }");
-    // Console.Write(" ): ");
-    // int inputRating = int.Parse(Console.ReadLine());
-
-    // Console.Write("     Does the game have an alias? ");
-    // string inputAlias = Console.ReadLine();
-
-    // var t4c = new Game(id: _repository.NextId(),
-    //                     title: inputTitle,
-    //                     genres: ConvertStringToEnumList<EGenre>(inputGenreToConvert),
-    //                     description: inputDescription,
-    //                     developer: inputDeveloper,
-    //                     year: inputYear,
-    //                     rating: (ERating)inputRating,
-    //                     alias: inputAlias);
-
-    // Console.SetCursorPosition(5, Console.CursorTop);
-    // Console.WriteLine(t4c.Details());
-
-    AddConfirmation(GetGameDetailsFromUser(_repository.NextId()));
+    ConfirmAndSave(GetGameDetailsFromUser(_repository.NextId()));
 
     Console.WriteLine();
     Console.Write("     Press ENTER to go back to Games List...");
@@ -188,10 +165,37 @@ void AddGame()
 void EditGame()
 {
     Console.SetCursorPosition(2, 6);
-    Console.WriteLine("Enter game id to edit: ");
+    Console.Write("Enter game id to edit: ");
     int idGame = int.Parse(Console.ReadLine());
 
-    GetGameDetailsFromUser(idGame);
+    ConfirmAndEdit(GetGameDetailsFromUser(idGame), idGame);
+
+    Console.WriteLine();
+    Console.Write("     Press ENTER to go back to Games List...");
+}
+
+void RemoveGame()
+{
+    Console.SetCursorPosition(2, 6);
+    Console.Write("Enter game id to remove: ");
+    int idGame = int.Parse(Console.ReadLine());
+
+    ConfirmAndDelete(idGame);
+
+    Console.WriteLine();
+    Console.Write("     Press ENTER to go back to Games List...");
+}
+
+void UndoRemoveGame()
+{
+    Console.SetCursorPosition(5, 8);
+    Console.Write("Enter game id that you wish to return to the list: ");
+    int idGame = int.Parse(Console.ReadLine());
+
+    ConfirmAndUndelete(idGame);
+
+    Console.WriteLine();
+    Console.Write("     Press ENTER to go back to Games List...");
 }
 
 Game GetGameDetailsFromUser(int id)
@@ -239,15 +243,40 @@ Game GetGameDetailsFromUser(int id)
     return game;
 }
 
-void AddConfirmation(Game gameToBeAdded)
+void ConfirmAndSave(Game gameToBeAdded)
 {
     Console.WriteLine();
-    Console.Write($"{"",8} Are you sure you want to add {gameToBeAdded.GetAlias()} to your list of favorite games (Y / N) ? ");
+    Console.Write($"{"",8} Are you sure you want to add {gameToBeAdded.GetAlias()} (Y/N) ? ");
     string confirmation = Console.ReadLine();
     if (confirmation.ToUpper() == "Y")
-    {
         _repository.Insert(gameToBeAdded);
-    }
+}
+
+void ConfirmAndEdit(Game gameToBeAdded, int id)
+{
+    Console.WriteLine();
+    Console.Write($"{"",8} Are you sure you want to edit {gameToBeAdded.GetAlias()} (Y/N) ? ");
+    string confirmation = Console.ReadLine();
+    if (confirmation.ToUpper() == "Y")
+        _repository.Update(id, gameToBeAdded);
+}
+
+void ConfirmAndDelete(int id)
+{
+    Console.WriteLine();
+    Console.Write($"{"",8} Are you sure you want to remove this game from your list (Y/N) ? ");
+    string confirmation = Console.ReadLine();
+    if (confirmation.ToUpper() == "Y")
+        _repository.Remove(id);
+}
+
+void ConfirmAndUndelete(int id)
+{
+    Console.WriteLine();
+    Console.Write($"{"",8} Are you sure you want to remove this game from your list (Y/N) ? ");
+    string confirmation = Console.ReadLine();
+    if (confirmation.ToUpper() == "Y")
+        _repository.UndoRemove(id);
 }
 
 List<T> ConvertStringToEnumList<T>(string userInput) where T : struct, System.Enum

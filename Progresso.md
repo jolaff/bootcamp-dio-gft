@@ -1,5 +1,6 @@
 ## Log de Progresso do bootcamp
 
+- 28.01: Entrega do projeto: Criando um APP simples de cadastro de séries em .NET
 - 25.01: Conclusão da atividade: Configuração da arquitetura back-end com .NET Core
 - 24.01: Conclusão da atividade: Desenvolvimento de aplicações com .NET
 - 24.01: Entrega de projeto prático: Tratamento de Erro em C# com Exceptions

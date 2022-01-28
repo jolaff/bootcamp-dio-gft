@@ -6,10 +6,7 @@ public class GameRepository : IRepository<Game>
 {
     private List<Game> _games;
 
-    public GameRepository()
-    {
-        _games = new List<Game>();
-    }
+    public GameRepository() => _games = new List<Game>();
 
     public Game GetById(int id) => _games[id];
 
@@ -19,13 +16,9 @@ public class GameRepository : IRepository<Game>
 
     public int NextId() => _games.Count;
 
-    public void Remove(int id)
-    {
-        throw new NotImplementedException();
-    }
+    public void Remove(int id) => _games[id].Exclude();
 
-    public void Update(int id, Game item)
-    {
-        throw new NotImplementedException();
-    }
+    public void UndoRemove(int id) => _games[id].UndoExclude();
+
+    public void Update(int id, Game item) => _games[id] = item;
 }
