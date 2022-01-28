@@ -1,5 +1,7 @@
 ## Log de Progresso do bootcamp
 
+- 28.01: Bootcamp concluído. Certificado final emitido!
+- 28.01: Desafios Finais - GFT Start #3 .NET
 - 28.01: Entrega do projeto: Criando um APP simples de cadastro de séries em .NET
 - 25.01: Conclusão da atividade: Configuração da arquitetura back-end com .NET Core
 - 24.01: Conclusão da atividade: Desenvolvimento de aplicações com .NET
